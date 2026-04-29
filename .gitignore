@@ -1,0 +1,16 @@
+# Godot-specific ignores
+.godot/
+*.import
+export_presets.cfg
+
+# Mono-specific (if using C#, but good to have)
+.mono/
+bin/
+obj/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Project-specific
+*.log
