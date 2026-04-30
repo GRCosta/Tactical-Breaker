@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://xervlbfjop7p"]
+
+[node name="Main" type="Node2D" unique_id=111328412]
+
+[node name="PlayArea" type="Node2D" parent="." unique_id=1852430950]
+
+[node name="BlockContainer" type="Node2D" parent="PlayArea" unique_id=325538496]
+
+[node name="ProjectileContainer" type="Node2D" parent="PlayArea" unique_id=771470384]
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=844665149]
+
+[node name="UIManager" type="Control" parent="UILayer" unique_id=721220022]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Header" type="MarginContainer" parent="UILayer/UIManager" unique_id=561347875]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ArenaSpace" type="MarginContainer" parent="UILayer/UIManager" unique_id=1516218370]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Footer" type="MarginContainer" parent="UILayer/UIManager" unique_id=1445779620]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Paddle" type="CharacterBody2D" parent="." unique_id=297071059]
