@@ -8,8 +8,10 @@
 [node name="Block" type="StaticBody2D" unique_id=1374218057]
 script = ExtResource("1_8o1l4")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1355196909]
-texture = ExtResource("2_c2iur")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=440890437]
 shape = SubResource("RectangleShape2D_i67tl")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=1355196909]
+position = Vector2(-1.9073486e-06, -1.9073486e-06)
+scale = Vector2(0.15625003, 0.15625003)
+texture = ExtResource("2_c2iur")

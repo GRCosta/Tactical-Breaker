@@ -2,6 +2,21 @@
 
 [ext_resource type="Script" uid="uid://bkj4cfvwbtu1m" path="res://Scripts/Main.gd" id="1_jjgbg"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
+size = Vector2(1080, 4)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_jjgbg"]
+a = Vector2(-6.1035156e-05, -54000000)
+b = Vector2(6.1035156e-05, 54000000)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bo1nx"]
+a = Vector2(0, 1344)
+b = Vector2(0, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8gbba"]
+a = Vector2(0, 537.6)
+b = Vector2(0, 0)
+
 [sub_resource type="Gradient" id="Gradient_7u77a"]
 offsets = PackedFloat32Array(0.028409092, 0.73295456)
 
@@ -25,9 +40,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UIManager" unique_id=437980364]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 0
 
 [node name="Header" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=936101493]
@@ -42,10 +60,35 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 7.0
 color = Color(0.1505194, 0.31492436, 0.73261213, 1)
 
-[node name="Marker2D_topleft" type="Marker2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=185609486]
+[node name="Deadzone" type="Area2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=1377370845]
+position = Vector2(540, 1344)
 
-[node name="Marker2D_bottomright" type="Marker2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=861817890]
-position = Vector2(40, 28)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace/Deadzone" unique_id=62387713]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_jjgbg")
+
+[node name="Walls" type="Node2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=1180003538]
+
+[node name="TopWall" type="StaticBody2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace/Walls" unique_id=264805473]
+position = Vector2(540, 0)
+
+[node name="TopWallCollisionShape2D" type="CollisionShape2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace/Walls/TopWall" unique_id=370819904]
+rotation = 1.5707964
+scale = Vector2(0.5, 1e-05)
+shape = SubResource("SegmentShape2D_jjgbg")
+
+[node name="LeftWall" type="StaticBody2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace/Walls" unique_id=2017684342]
+
+[node name="LeftWallCollisionShape2D" type="CollisionShape2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace/Walls/LeftWall" unique_id=1977304853]
+scale = Vector2(0.5, 1)
+shape = SubResource("SegmentShape2D_bo1nx")
+
+[node name="RightWall" type="StaticBody2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace/Walls" unique_id=19556754]
+position = Vector2(1080, 0)
+
+[node name="RightWallCollisionShape2D" type="CollisionShape2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace/Walls/RightWall" unique_id=1522434407]
+scale = Vector2(0.5, 2.5)
+shape = SubResource("SegmentShape2D_8gbba")
 
 [node name="Footer" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=1247243359]
 layout_mode = 2
