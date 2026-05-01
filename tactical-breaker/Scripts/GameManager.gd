@@ -2,7 +2,7 @@ extends Node
 
 # --- Signals --- #
 signal stats_changed
-signal state_chaged(new_state)
+signal state_changed(new_state)
 signal game_over
 
 # --- Enums --- #
@@ -12,7 +12,7 @@ enum GameState {SHOP, AIM, ACTION, RESOLUTION }
 var coins : int = 0:
 	set(value):
 		coins = value
-		stats_chaged.emit()
+		stats_changed.emit()
 		
 var health : int = 3:
 	set(value):
@@ -34,13 +34,9 @@ func _ready() -> void:
 # Game loop mechanic to change strate in each section of the game
 func change_state(new_state: GameState):
 	current_state = new_state
-	state_chaged.emit(new_state)
+	state_changed.emit(new_state)
 	print("Game State changed to: ", GameState.keys()[new_state])
 
 # Keeping the economy flowing
 func add_coins(amount: int):
 	coins += amount
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

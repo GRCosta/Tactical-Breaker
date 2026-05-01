@@ -26,7 +26,4 @@ func _on_body_entered(body):
 		is_active = false
 		linear_velocity = Vector2.ZERO
 		returned_to_base.emit()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+		queue_free()

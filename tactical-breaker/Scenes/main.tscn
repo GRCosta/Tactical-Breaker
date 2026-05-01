@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://xervlbfjop7p"]
 
+[ext_resource type="Script" uid="uid://bkj4cfvwbtu1m" path="res://Scripts/Main.gd" id="1_jjgbg"]
+
+[sub_resource type="Gradient" id="Gradient_7u77a"]
+offsets = PackedFloat32Array(0.028409092, 0.73295456)
+
 [node name="Main" type="Node2D" unique_id=111328412]
+script = ExtResource("1_jjgbg")
 
 [node name="PlayArea" type="Node2D" parent="." unique_id=1852430950]
 
@@ -26,14 +32,28 @@ theme_override_constants/separation = 0
 
 [node name="Header" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=936101493]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 color = Color(0.20992655, 0.13527879, 0.2648144, 1)
 
 [node name="ArenaSpace" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=1430425958]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 7.0
 color = Color(0.1505194, 0.31492436, 0.73261213, 1)
+
+[node name="Marker2D_topleft" type="Marker2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=185609486]
+
+[node name="Marker2D_bottomright" type="Marker2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=861817890]
+position = Vector2(40, 28)
 
 [node name="Footer" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=1247243359]
 layout_mode = 2
+size_flags_vertical = 3
 color = Color(0.34499997, 0.2160734, 0.07180188, 1)
 
 [node name="Paddle" type="CharacterBody2D" parent="." unique_id=297071059]
+
+[node name="Line2D" type="Line2D" parent="." unique_id=701418924]
+width = 5.0
+gradient = SubResource("Gradient_7u77a")
