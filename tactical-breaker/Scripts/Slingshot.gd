@@ -7,6 +7,9 @@ var is_dragging: bool = false
 var start_touch_pos: Vector2
 var current_direction: Vector2
 
+@onready var trajectory_line = $Trajectory_Line
+
+
 
 func _ready():
 	print("Slingshot is alive and waiting...")
@@ -15,38 +18,37 @@ func _ready():
 		GameManager.change_state(GameManager.GameState.AIM)
 
 func _input(event: InputEvent) -> void:
-	#___DEBUG___#
-	#if event is InputEventMouseButton and event.pressed:
-	#	print("Mouse clicked at: ", event.position)
-	#
-	## Only allow aiming if the GameManager is ready
-	#if GameManager.current_state != GameManager.GameState.AIM:
-	#	return
-	#if event is InputEventScreenTouch or event is InputEventMouseButton:
-	#	if event.pressed:
-	#		is_dragging = true
-	#		start_touch_pos = event.position
-	#	elif is_dragging:
-	#		is_dragging = false
-	#		launch_ball()
-	#	if event is InputEventScreenDrag or event is InputEventMouseMotion:
-	#		if is_dragging:
-	#			update_trajectory(event.position)
 	if event is InputEventMouseButton and event.pressed:
 		print("1. Mouse Click Detected")
-		if GameManager.current_state != GameManager.GameState.AIM:
-			print("   - FAILED: GameManager state is: ", GameManager.GameState.keys()[GameManager.current_state])
-			return
+	if GameManager.current_state != GameManager.GameState.AIM:
+		print("   - FAILED: GameManager state is: ", GameManager.GameState.keys()[GameManager.current_state])
+		return
 		
+	if event is InputEventMouseButton:
 		is_dragging = true
-		start_touch_pos = event.position
-
-	elif event is InputEventMouseButton and not event.pressed and is_dragging:
-		print("2. Mouse Released")
+		start_touch_pos = get_local_mouse_position()
+		trajectory_line.visible = true
+	elif is_dragging:
 		is_dragging = false
-		launch_ball()			
+		trajectory_line.visible = false
+		if current_direction.length() > 0.1:
+			owner.spawn_and_launch(current_direction)
+			GameManager.change_state(GameManager.GameState.ACTION)
+
+	if event is InputEventMouseMotion and is_dragging:
+		print("2. Mouse Released")
+		var mouse_local = get_local_mouse_position()
+		var drag_vector = start_touch_pos - mouse_local
+		current_direction = drag_vector.normalized()
+		update_trajectory(event.position)
 
 func update_trajectory(touch_pos:Vector2):
+	trajectory_line.clear_points()
+	trajectory_line.add_point(Vector2.ZERO)
+	
+	var line_end = current_direction * 200
+	trajectory_line.add_point(line_end)
+	
 	var drag_vec = start_touch_pos - touch_pos
 	current_direction= drag_vec.normalized()
 	queue_redraw()

@@ -97,7 +97,13 @@ shape = SubResource("SegmentShape2D_8gbba")
 position = Vector2(540, 1330)
 script = ExtResource("2_bo1nx")
 
+[node name="Trajectory_Line" type="Line2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace/Slingshot" unique_id=701418924]
+z_index = 5
+default_color = Color(0.18039216, 0.80784315, 0.36078432, 1)
+gradient = SubResource("Gradient_7u77a")
+
 [node name="Paddle" type="CharacterBody2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=297071059]
+visible = false
 position = Vector2(540, 1330)
 
 [node name="Footer" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=1247243359]
@@ -114,7 +120,3 @@ position = Vector2(0, 285)
 [node name="BlockContainer" type="Node2D" parent="PlayArea" unique_id=325538496]
 
 [node name="ProjectileContainer" type="Node2D" parent="PlayArea" unique_id=771470384]
-
-[node name="Line2D" type="Line2D" parent="." unique_id=701418924]
-width = 5.0
-gradient = SubResource("Gradient_7u77a")
