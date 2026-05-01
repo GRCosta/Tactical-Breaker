@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://xervlbfjop7p"]
 
 [ext_resource type="Script" uid="uid://bkj4cfvwbtu1m" path="res://Scripts/Main.gd" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://71pv5g5phw0w" path="res://Scenes/ball.tscn" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://bc3ex7rg5ifpn" path="res://Scripts/Slingshot.gd" id="2_bo1nx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
-size = Vector2(1080, 4)
+size = Vector2(1080, 8)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_jjgbg"]
 a = Vector2(-6.1035156e-05, -54000000)
@@ -22,14 +24,10 @@ offsets = PackedFloat32Array(0.028409092, 0.73295456)
 
 [node name="Main" type="Node2D" unique_id=111328412]
 script = ExtResource("1_jjgbg")
-
-[node name="PlayArea" type="Node2D" parent="." unique_id=1852430950]
-
-[node name="BlockContainer" type="Node2D" parent="PlayArea" unique_id=325538496]
-
-[node name="ProjectileContainer" type="Node2D" parent="PlayArea" unique_id=771470384]
+ball_scene = ExtResource("2_8gbba")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=844665149]
+layer = 0
 
 [node name="UIManager" type="Control" parent="UILayer" unique_id=802657525]
 layout_mode = 3
@@ -38,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UIManager" unique_id=437980364]
 layout_mode = 1
@@ -46,25 +45,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Header" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=936101493]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 1.5
+mouse_filter = 2
 color = Color(0.20992655, 0.13527879, 0.2648144, 1)
 
 [node name="ArenaSpace" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=1430425958]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 7.0
+mouse_filter = 2
 color = Color(0.1505194, 0.31492436, 0.73261213, 1)
 
 [node name="Deadzone" type="Area2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=1377370845]
-position = Vector2(540, 1344)
+position = Vector2(540, 1340)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace/Deadzone" unique_id=62387713]
-position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_jjgbg")
 
 [node name="Walls" type="Node2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=1180003538]
@@ -90,12 +93,27 @@ position = Vector2(1080, 0)
 scale = Vector2(0.5, 2.5)
 shape = SubResource("SegmentShape2D_8gbba")
 
+[node name="Slingshot" type="Node2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=335361053]
+position = Vector2(540, 1330)
+script = ExtResource("2_bo1nx")
+
+[node name="Paddle" type="CharacterBody2D" parent="UILayer/UIManager/VBoxContainer/ArenaSpace" unique_id=297071059]
+position = Vector2(540, 1330)
+
 [node name="Footer" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=1247243359]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
+mouse_filter = 2
 color = Color(0.34499997, 0.2160734, 0.07180188, 1)
 
-[node name="Paddle" type="CharacterBody2D" parent="." unique_id=297071059]
+[node name="PlayArea" type="Node2D" parent="." unique_id=1852430950]
+position = Vector2(0, 285)
+
+[node name="BlockContainer" type="Node2D" parent="PlayArea" unique_id=325538496]
+
+[node name="ProjectileContainer" type="Node2D" parent="PlayArea" unique_id=771470384]
 
 [node name="Line2D" type="Line2D" parent="." unique_id=701418924]
 width = 5.0

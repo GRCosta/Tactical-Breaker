@@ -29,7 +29,7 @@ var cards_in_hand: Array = [] 		# Stores the PowerUp Resources
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(" Tactical Breaker: GameManager Initialized")
+	print("Tactical Breaker: GameManager Initialized")
 
 # Game loop mechanic to change strate in each section of the game
 func change_state(new_state: GameState):

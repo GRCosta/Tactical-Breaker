@@ -9,6 +9,8 @@ var base_speed : int = 600
 func _ready() -> void:
 	# Locking the rotation since we don't need that for now.
 	lock_rotation = true
+	# Adding the collision signal to the own object
+	body_entered.connect(_on_body_entered)
 	
 func launch(direction: Vector2):
 	is_active = true
