@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://71pv5g5phw0w"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rmwm4"]
+friction = 0.0
+bounce = 1.0
+
+[node name="Ball" type="RigidBody2D" unique_id=571438944]
+physics_material_override = SubResource("PhysicsMaterial_rmwm4")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1

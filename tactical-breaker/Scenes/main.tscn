@@ -10,25 +10,30 @@
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=844665149]
 
-[node name="UIManager" type="Control" parent="UILayer" unique_id=721220022]
+[node name="UIManager" type="Control" parent="UILayer" unique_id=802657525]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Header" type="MarginContainer" parent="UILayer/UIManager" unique_id=561347875]
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UIManager" unique_id=437980364]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_constants/separation = 0
 
-[node name="ArenaSpace" type="MarginContainer" parent="UILayer/UIManager" unique_id=1516218370]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Header" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=936101493]
+layout_mode = 2
+color = Color(0.20992655, 0.13527879, 0.2648144, 1)
 
-[node name="Footer" type="MarginContainer" parent="UILayer/UIManager" unique_id=1445779620]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ArenaSpace" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=1430425958]
+layout_mode = 2
+color = Color(0.1505194, 0.31492436, 0.73261213, 1)
+
+[node name="Footer" type="ColorRect" parent="UILayer/UIManager/VBoxContainer" unique_id=1247243359]
+layout_mode = 2
+color = Color(0.34499997, 0.2160734, 0.07180188, 1)
 
 [node name="Paddle" type="CharacterBody2D" parent="." unique_id=297071059]
