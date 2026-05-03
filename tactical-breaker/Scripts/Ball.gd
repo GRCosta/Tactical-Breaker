@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-signal returned_to_base
+signal returned_to_base(x_position)
 
 var is_active = false
 var base_speed : int = 600
@@ -27,5 +27,5 @@ func _on_body_entered(body):
 	if body.name == "DeadZone":
 		is_active = false
 		linear_velocity = Vector2.ZERO
-		returned_to_base.emit()
+		returned_to_base.emit(global_position.x)
 		queue_free()
